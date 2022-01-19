@@ -8,13 +8,3 @@ export interface IAdvertisement {
     type?: Array<IType>;
     channel?: Array<IChannel>;
 }
-
-export interface IChannel {
-    id: string;
-    name: string;
-}
-
-export interface IType {
-    id: string;
-    name: string;
-}
