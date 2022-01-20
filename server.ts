@@ -1,9 +1,9 @@
-import { Application } from "./deps.ts";
+import { Application, config } from "./deps.ts";
 import router from "./routes.ts";
 import _404 from "./middleware/fourZerofour.ts";
 import errorHandler from "./middleware/error-handler.ts";
 
-const env = Deno.env.toObject()
+const env = config()
 const PORT = env.PORT || 3000;
 const HOST = env.HOST || 'localhost';
 
