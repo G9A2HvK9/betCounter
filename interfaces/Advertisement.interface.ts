@@ -1,3 +1,6 @@
+import { IType } from "./Type.interface.ts";
+import { IChannel } from "./Channel.interface.ts";
+
 export interface IAdvertisement {
     id: string;
     name?: string;

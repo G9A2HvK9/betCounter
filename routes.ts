@@ -1,12 +1,20 @@
-import { Router } from './deps.ts'
+import { Router } from "./deps.ts";
+import {
+    getAdvertisements,
+    getAdvertisement,
+    addAdvertisement,
+    updateAdvertisement,
+    publishAdvertisement,
+    deleteAdvertisement
+} from "./controllers/Advertisement.controller.ts";
 
 const router = new Router();
 
-router.get("/api/v1/hello", (context) => {
-  context.response.body = {
-    success: true,
-    msg: "Hello World",
-  };
-});
+router.get("/api/v1/advertisements", getAdvertisements)
+  .get("/api/v1/advertisements/:id", getAdvertisement)
+  .post("/api/v1/advertisements", addAdvertisement)
+  .put("/api/v1/advertisements/:id", updateAdvertisement)
+  .put("/api/v1/advertisements/publish", publishAdvertisement)
+  .delete("/api/v1/advertisements/:id", deleteAdvertisement);
 
 export default router;
