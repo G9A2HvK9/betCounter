@@ -1,16 +1,38 @@
 import { userCollection } from "../database/mongo.ts";
+import { IUser } from "../interfaces/User.interface.ts";
 
 
-export const getUsers = async ({ request, response }: { request: any, response: any }) => {
-    const users = userCollection.find()
-    if (users) {
-        response.status = 200;
-        response.body = {
-            success: true,
-            data: users
-        }
+export const getUsers = async ({ request, response }: {request: any, response: any}) => {
+    
+    try {
+        const all_users = await userCollection.find({}, { noCursorTimeout: false} ).toArray()
+        response.status = 200
+        response.body = all_users
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const addUser = async ({ request, response }: {request: any, response: any }) => {
+    const { firstName, lastName, userName, email } = await request.body().value
+
+    const user:any = {
+         firstName,
+         lastName,
+         userName,
+         email
+    }
+
+    try {
+        const id = await userCollection.insertOne(user)
+        user._id = id
+        response.status = 200
+        response.body = user
+    } catch (err) {
+        console.log(err)
     }
 };
+
 
 // export const getUser = (
 //     { params, response }: { params: { id: string }; response: any },

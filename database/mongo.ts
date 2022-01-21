@@ -9,7 +9,6 @@ const configVars = {
 };
 
 const connectionString = config().MONGO_URI.replace("<username>", config().MONGO_USER).replace("<password>", config().MONGO_PW).replace("<database>", config().MONGO_DB)
-console.log(connectionString)
 const client = new MongoClient();
 
 try {
@@ -23,8 +22,5 @@ const db = client.database("betCounter")
 const userCollection = db.collection<IUser>("users")
 
 const dbs = await client.listDatabases()
-console.log(db)
-
-
 
 export { userCollection }
