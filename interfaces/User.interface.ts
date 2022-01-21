@@ -1,5 +1,7 @@
+import { Bson } from "../deps.ts"
+
 export interface IUser {
-    id: string;
+    _id: Bson.ObjectId;
     firstName: string;
     lastName: string;
     userName: string;
